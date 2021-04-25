@@ -27,6 +27,25 @@ class Stack {
         this.pos = this.cards.length - 1
     }
 
+    cut(card) {
+        if (!card) return
+        const i = this.cards.indexOf(card)
+        if (i >= 0) {
+            this.cards.splice(i, 1)
+            if (this.pos >= i) this.prev()
+            return card
+        }
+    }
+
+    getSelected() {
+        return this.cards[this.pos]
+    }
+
+    cutSelected() {
+        const card = this.cards[this.pos]
+        return this.cut(card)
+    }
+
     next() {
         this.pos ++
         if (this.pos >= this.cards.length) this.pos = 0
@@ -59,14 +78,14 @@ class Stack {
         const center = this.getCur()
         const right = this.getNext()
 
-        if (right) {
+        if (right && (left !== right)) {
             right.back = true
             right.x = this.x + right.w * .1
             right.y = this.y - right.h * .4
             right.draw()
         }
 
-        if (left) {
+        if (left && (left !== center)) {
             left.back = true
             left.x = this.x - left.w * 1.1
             left.y = this.y - left.h * .4

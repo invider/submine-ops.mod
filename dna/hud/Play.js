@@ -19,6 +19,14 @@ class Play extends dna.hud.Sticky {
             baseTop()
             alignCenter()
             text('$' + this.corp.bid, this.x, this.y)
+
+        } else if (env.state.phase === _.PLAY) {
+            if (this.corp.card) {
+                save()
+                translate(this.x, this.y)
+                this.corp.card.drawHeader()
+                restore()
+            }
         }
     }
 }

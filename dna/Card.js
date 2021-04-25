@@ -44,6 +44,16 @@ class Card {
         this.h = this.w / this.hwRatio
     }
 
+    // positioning must be done outside of this method
+    drawHeader() {
+        const hFontSize = this.h * (this.ehFontH/100)
+        font(hFontSize + 'px ' + env.style.fontFace)
+        baseTop()
+        alignCenter()
+        fill('#ffff00')
+        text(this.title, 0, 0)
+    }
+
     draw() {
         this.adjust()
         save()

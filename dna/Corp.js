@@ -20,6 +20,20 @@ class Corp {
         this.stack.push( card )
     }
 
+    playCard() {
+        const card = this.stack.getSelected()
+        if (card) {
+            if (this.card) {
+                // try to stack
+            } else {
+                this.stack.cut(card)
+                this.card = card
+            }
+        } else {
+            // missing card sfx
+        }
+    }
+
     startBidding() {
         this.bid = 0
     }
@@ -54,6 +68,7 @@ class Corp {
         switch(action) {
             case _.LEFT:  this.stack.prev(); break;
             case _.RIGHT: this.stack.next(); break;
+            case _.USE:   this.playCard();   break;
         }
     }
 

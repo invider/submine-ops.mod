@@ -1,4 +1,4 @@
 const cfg = {
     startCredit: 100,
-    tradeTime: 15,
+    tradeTime: 10,
 }
