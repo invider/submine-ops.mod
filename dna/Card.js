@@ -18,6 +18,20 @@ class Card {
 
     constructor(st) {
         augment(this, df, st)
+
+        if (this.type === 'random') {
+            this.type = lib.math.rnde(dna.cards._ls).name
+        }
+
+        // mix in card type trait
+        const typeTrait = dna.cards[this.type]
+        if (!typeTrait) log.warn(`missing trait for card [${this.type}]`)
+        augment(this, typeTrait)
+
+        // set card type text info
+        const typeText = dna.cards.info[this.type]
+        if (!typeText) log.warn(`missing text for card [${this.type}]`)
+        else this.text = typeText
     }
 
     adjust() {

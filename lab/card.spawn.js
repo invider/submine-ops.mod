@@ -1,6 +1,7 @@
 const card = {
     DNA: 'Card',
-    mode: 'easy',
+    type: 'random',
     x: 200,
     y: 100,
 }
+
