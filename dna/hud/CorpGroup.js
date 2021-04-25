@@ -45,6 +45,12 @@ class CorpGroup extends dna.hud.Container {
             stick: 'bottom',
             anchor: s,
         })
+
+        this.spawn( dna.hud.Play, {
+            corp: this.corp,
+            stick: 'top',
+            anchor: s,
+        })
     }
 
     adjust() {

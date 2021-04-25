@@ -12,11 +12,12 @@ function newGame() {
     })
 
 
-    const c1 = lab.spawn( dna.Corp, {
+    const corp = lab.touch('corp')
+    const c1 = corp.spawn( dna.Corp, {
         team: 1,
         name: 'Drilling Corp',
     })
-    const c2 = lab.spawn( dna.Corp, {
+    const c2 = corp.spawn( dna.Corp, {
         team: 2,
         name: 'Mineral Corp',
     })

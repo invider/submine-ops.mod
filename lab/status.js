@@ -16,7 +16,7 @@ function draw() {
             st = 'trade: ' + ceil(env.state.timer)
             break
         case _.PLAY:
-            st = 'play cards'
+            st = 'play your cards'
             break
     }
     alignCenter()
