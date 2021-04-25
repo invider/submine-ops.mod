@@ -30,6 +30,8 @@ class CorpGroup extends dna.hud.Container {
                 }
                 break
         }
+        augment(this, anchor)
+
         anchor.name = 'stack'
         const s = this.spawn( dna.hud.Stack, anchor )
         s.push( new dna.Card({ type: 'random' }))
@@ -37,16 +39,20 @@ class CorpGroup extends dna.hud.Container {
         s.push( new dna.Card({ type: 'random' }))
         s.push( new dna.Card({ type: 'random' }))
         s.push( new dna.Card({ type: 'random' }))
+
+        this.spawn( dna.hud.Info, {
+            corp: this.corp,
+            stick: 'bottom',
+            anchor: s,
+        })
     }
 
     adjust() {
-        super.adjust()
         this.x = 0
         this.y = 0
-        this.w = rx(1)
-        this.h = ry(1)
-        //this.x = rx(this.rx)
-        //this.y = ry(this.ry)
+        this.w = ctx.width
+        this.h = ctx.height
+        super.adjust()
     }
 
     drawBackground() {}

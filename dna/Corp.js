@@ -2,6 +2,7 @@ class Corp {
 
     constructor(st) {
         augment(this, st)
+        this.credit = env.cfg.startCredit
 
         const group = lab.hud.spawn( dna.hud.CorpGroup, {
             corp: this,
