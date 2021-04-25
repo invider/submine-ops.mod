@@ -17,9 +17,11 @@ const df = {
     h: 100,
 }
 
+let id = 0
 class Card {
 
     constructor(st) {
+        this.id = ++id
         augment(this, df, st)
 
         if (this.type === 'random') {
@@ -64,7 +66,8 @@ class Card {
         baseTop()
         alignCenter()
         fill('#000000')
-        text(this.title, this.w/2, edge)
+        text('#' + this.id, this.w/2, edge)
+        text(this.title, this.w/2, edge + hFontSize)
 
         if (!this.words) {
             this.words = this.text.split(' ')

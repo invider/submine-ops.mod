@@ -25,10 +25,20 @@ class Stack {
         this.pos = this.cards.length - 1
     }
 
+    next() {
+        this.pos ++
+        if (this.pos >= this.cards.length) this.pos = 0
+    }
+
+    prev() {
+        this.pos --
+        if (this.pos < 0) this.pos = this.cards.length - 1
+    }
+
     getPrev() {
-        if (this.pos > 0) return this.cards[ this.pos - 1 ]
-        else if (this.pos === -1 && this.cards.length > 0) return this.cards[ this.cards.length - 1 ]
-        else return null
+        if (this.pos < 0) return null
+        else if (this.pos === 0) return this.cards[ this.cards.length - 1 ]
+        else return this.cards[ this.pos - 1 ]
     }
 
     getCur() {
@@ -37,6 +47,7 @@ class Stack {
     }
 
     getNext() {
+        if (this.pos === this.cards.length - 1) return this.cards[0]
         return this.cards[ this.pos + 1 ]
     }
 
@@ -48,14 +59,14 @@ class Stack {
 
         if (right) {
             right.back = true
-            right.x = this.x + right.w
+            right.x = this.x + right.w * .1
             right.y = this.y - right.h * .4
             right.draw()
         }
 
         if (left) {
             left.back = true
-            left.x = this.x - left.w
+            left.x = this.x - left.w * 1.1
             left.y = this.y - left.h * .4
             left.draw()
         }
@@ -66,8 +77,5 @@ class Stack {
             center.y = this.y - center.h/2
             center.draw()
         }
-
-        fill('#ff0000')
-        circle(this.x, this.y, 2)
     }
 }
