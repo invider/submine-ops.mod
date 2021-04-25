@@ -18,6 +18,7 @@ class Stack {
     adjust() {
         this.x = rx(this.rx)
         this.y = ry(this.ry)
+        this.cards.forEach(card => card.adjust())
     }
 
     push(card) {
