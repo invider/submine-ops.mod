@@ -25,6 +25,7 @@ class Stack {
     push(card) {
         this.cards.push(card)
         this.pos = this.cards.length - 1
+        card.adjust()
     }
 
     cut(card) {

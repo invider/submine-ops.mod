@@ -1,6 +1,7 @@
 const df = {
     title: 'A Card',
     text: 'Some valuable thingy',
+    price: 1,
     background:  hsl(.57, .4,  .5),
     abackground: hsl(.57, .4,  .7),
     border:      hsl(.05, .25, .3),
@@ -76,7 +77,7 @@ class Card {
         baseTop()
         alignCenter()
         fill('#000000')
-        text('#' + this.id, this.w/2, edge)
+        text('#' + this.id + ' $' + this.price, this.w/2, edge)
         text(this.title, this.w/2, edge + hFontSize)
 
         if (!this.words) {
