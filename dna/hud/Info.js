@@ -1,21 +1,13 @@
+// @depends(dna/hud/Sticky)
 const df = {
     x: 0,
     y: 0,
 }
 
-class Info {
+class Info extends dna.hud.Sticky {
 
     constructor(st) {
-        augment(this, df, st)
-    }
-
-    adjust() {
-        switch(this.stick) {
-            case 'bottom':
-                this.x = this.anchor.x
-                this.y = this.anchor.y + this.anchor.h * .6
-                break
-        }
+        super( augment({}, df, st) )
     }
 
     draw() {
