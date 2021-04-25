@@ -1,3 +1,5 @@
+const transient = true
+
 function draw() {
     if (!env.state) return
 
@@ -7,4 +9,16 @@ function draw() {
 
     alignRight()
     text('Turn: ' + env.state.turn, rx(1) - 10, 10)
+
+    let st = 'unknown'
+    switch (env.state.phase) {
+        case _.TRADE:
+            st = 'trade: ' + ceil(env.state.timer)
+            break
+        case _.PLAY:
+            st = 'play cards'
+            break
+    }
+    alignCenter()
+    text(st, rx(.5), 10)
 }
