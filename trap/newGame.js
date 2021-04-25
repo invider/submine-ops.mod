@@ -19,12 +19,13 @@ function newGame() {
         ry: .75,
     })
 
-    s1.push( new dna.Card({
-        type: 'random',
-    }))
-    s2.push( new dna.Card({
-        type: 'random',
-    }))
+    s1.push( new dna.Card({ type: 'random' }))
+    s1.push( new dna.Card({ type: 'random' }))
+    s1.push( new dna.Card({ type: 'random' }))
+
+    s2.push( new dna.Card({ type: 'random' }))
+    s2.push( new dna.Card({ type: 'random' }))
+    s2.push( new dna.Card({ type: 'random' }))
 
     lab.control.game.nextTurn()
 }

@@ -1,3 +1,4 @@
+const title = 'Geo Survey'
 
 // the card is introduced to the table
 function onOpen() {

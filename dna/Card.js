@@ -1,7 +1,10 @@
 const df = {
     title: 'A Card',
     text: 'Some valuable thingy',
-    background: hsl(.57, .4, .7),
+    background:  hsl(.57, .4,  .5),
+    abackground: hsl(.57, .4,  .7),
+    border:      hsl(.05, .25, .3),
+    aborder:     hsl(.15, .5,  .4),
     ewBase:   15,
     ehFontH:  10,
     ehFontT:  8,
@@ -29,7 +32,7 @@ class Card {
         augment(this, typeTrait)
 
         // set card type text info
-        const typeText = dna.cards.info[this.type]
+        const typeText = dna.info[this.type]
         if (!typeText) log.warn(`missing text for card [${this.type}]`)
         else this.text = typeText
     }
@@ -45,7 +48,13 @@ class Card {
         translate(this.x, this.y)
         clip(0, 0, this.w, this.h)
 
-        fill(this.background)
+        if (this.back) fill(this.background)
+        else fill(this.abackground)
+        rect(0, 0, this.w, this.h)
+
+        if (this.back) stroke(this.border)
+        else stroke(this.aborder)
+        lineWidth(4)
         rect(0, 0, this.w, this.h)
 
         const edge = this.w * (this.eEdge/100)

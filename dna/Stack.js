@@ -1,5 +1,5 @@
 const df = {
-    pos: 0,
+    pos: -1,
     x: 0,
     y: 0,
     rx: .1,
@@ -22,6 +22,7 @@ class Stack {
 
     push(card) {
         this.cards.push(card)
+        this.pos = this.cards.length - 1
     }
 
     getPrev() {
@@ -45,7 +46,22 @@ class Stack {
         const center = this.getCur()
         const right = this.getNext()
 
+        if (right) {
+            right.back = true
+            right.x = this.x + right.w
+            right.y = this.y - right.h * .4
+            right.draw()
+        }
+
+        if (left) {
+            left.back = true
+            left.x = this.x - left.w
+            left.y = this.y - left.h * .4
+            left.draw()
+        }
+
         if (center) {
+            center.back = false
             center.x = this.x - center.w/2
             center.y = this.y - center.h/2
             center.draw()
