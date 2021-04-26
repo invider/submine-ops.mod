@@ -78,7 +78,15 @@ function play() {
     lab.hud.missions.show()
 }
 
+function doMissions() {
+    for (const corp of lab.corp._ls) {
+        corp.attemptMission()
+    }
+    lab.hud.missions.refreshMissions()
+}
+
 function completePlay() {
+    this.doMissions()
     this.nextTurn()
 }
 

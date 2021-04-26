@@ -15,6 +15,37 @@ class Corp {
             name: 'corp' + this.team,
         })
         this.stack = group.stack
+        this.nextAssembly()
+    }
+
+    nextAssembly() {
+        this.assembly = new dna.Assembly({
+            corp: this,
+        })
+    }
+
+    attemptMission() {
+        const missions = lab.hud.missions.cards
+
+        let mission = null
+        for (const m of missions) {
+            if (this.assembly.matchMission(m)) {
+                mission = m
+            }
+        }
+
+        if (mission) {
+            // found a suitable mission!
+            this.completeMission(mission)
+        }
+    }
+
+    completeMission(mission) {
+        log('do mission: ' + mission.title)
+        lab.hud.missions.cut(mission)
+        log('+' + mission.reward)
+        this.credit += mission.reward
+        this.nextAssembly()
     }
 
     pushCard(card) {
@@ -24,11 +55,8 @@ class Corp {
     playCard() {
         const card = this.stack.getSelected()
         if (card) {
-            if (this.card) {
-                // try to stack
-            } else {
+            if (this.assembly.join(card)) {
                 this.stack.cut(card)
-                this.card = card
             }
         } else {
             // missing card sfx
@@ -51,6 +79,17 @@ class Corp {
         if (this.bid < 0) this.bid = 0
     }
 
+    refuel() {
+        if (this.fuel < 1) return
+        if (this.assembly.refuel(1) > 0) {
+            this.fuel --
+        }
+    }
+
+    defuel() {
+        this.fuel += this.assembly.defuel(1)
+    }
+
     handleTrade(action) {
         switch(action) {
             case _.UP:
@@ -69,6 +108,8 @@ class Corp {
         switch(action) {
             case _.LEFT:  this.stack.prev(); break;
             case _.RIGHT: this.stack.next(); break;
+            case _.UP:    this.refuel();     break;
+            case _.DOWN:  this.defuel();     break;
             case _.USE:   this.playCard();   break;
         }
     }

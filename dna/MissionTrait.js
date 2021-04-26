@@ -1,4 +1,3 @@
-
 const textBase = 30
 
 function drawBody() {

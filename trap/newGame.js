@@ -30,10 +30,14 @@ function newGame() {
         name: 'missions',
         rx: .5,
         ry: .3,
+
+        refreshMissions: function() {
+            while(this.cards.length < 3) {
+                this.push( new dna.Card({ type: 'mission' }) )
+            }
+        },
     })
-    for (let i = 0; i < 3; i++) {
-        missions.push( new dna.Card({ type: 'mission' }) )
-    }
+    missions.refreshMissions()
 
     c1.stack.show()
     c2.stack.show()

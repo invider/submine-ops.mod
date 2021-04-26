@@ -3,6 +3,7 @@ class Play extends dna.hud.Sticky {
 
     constructor(st) {
         super(st)
+        this.ehFontH = 10
     }
 
     draw() {
@@ -21,12 +22,29 @@ class Play extends dna.hud.Sticky {
             text('$' + this.corp.bid, this.x, this.y)
 
         } else if (env.state.phase === _.PLAY) {
-            if (this.corp.card) {
-                save()
-                translate(this.x, this.y)
-                this.corp.card.drawHeader()
-                restore()
+            const assembly = this.corp.assembly
+            if (!assembly) return
+            const ls = assembly.cards
+
+            save()
+            translate(this.x, this.y)
+
+            // fuel
+            const hFontSize = ctx.height * (env.style.playFontSize/100)
+            font(hFontSize + 'px ' + env.style.fontFace)
+            baseTop()
+            alignCenter()
+            fill('#ffff00')
+            text('fuel:' + assembly.fuel, 0, 0)
+            translate(0, -hFontSize)
+
+            for (let i = ls.length - 1; i >= 0; i--) {
+                const card = ls[i]
+                const shift = card.drawHeader()
+                translate(0, -shift)
             }
+
+            restore()
         }
     }
 }

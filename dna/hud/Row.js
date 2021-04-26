@@ -13,9 +13,7 @@ class Row extends dna.hud.Pile {
         super( augment({}, df, st) )
     }
 
-    push(card) {
-        super.push(card)
-        card.adjust()
+    onNewCard(card) {
         this.cardWidth = card.w
     }
 
