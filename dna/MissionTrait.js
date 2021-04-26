@@ -7,27 +7,16 @@ function drawBody() {
     font(tFontSize + 'px ' + env.style.fontFace)
     alignLeft()
 
-
     const space = tFontSize * .5
     const limit = this.w - edge
     let x = edge
     let y = this.h * (this.textBase/100)
     let lineWords = 0
 
-    text('* some', x, y)
+    text('fuel: ' + this.fuel, x, y)
 
-    /*
-    for (const w of this.words) {
-        const tw = textWidth(w)
-        if (lineWords > 0 && x + tw > limit) {
-            // line feed
-            x = edge
-            y += tFontSize
-            lineWords = 0
-        }
-        text(w, x, y)
-        x += tw + space
-        lineWords ++
+    for (const e of this.equip) {
+        y += tFontSize
+        text('* ' + e, x, y)
     }
-    */
 }

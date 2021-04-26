@@ -18,6 +18,11 @@ function handleControl(e) {
             trap('menu')
             break
 
+        case 'Tab':
+            trap('skip')
+            e.preventDefault()
+            break
+
         case 'F8':
             lib.img.screenshot(env.tune.app)
             break
