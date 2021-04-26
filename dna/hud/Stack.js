@@ -9,6 +9,10 @@ class Stack extends dna.hud.Pile {
         //augment(this, df, st)
     }
 
+    onNewCard() {
+        this.pos = this.cards.length - 1
+    }
+
     getSelected() {
         return this.cards[this.pos]
     }

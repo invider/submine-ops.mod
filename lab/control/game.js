@@ -56,10 +56,8 @@ function completeTrade() {
         // complete transaction
         winner.credit -= winner.bid
 
-        const card = new dna.Card({
-            type: 'random',
-            price: winner.bid,
-        })
+        const card = lab.hud.trader.card
+        card.price = winner.bid
         winner.pushCard( card )
         log('new card: ' + card.title)
         winner.bid = 0

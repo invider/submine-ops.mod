@@ -3,6 +3,7 @@
 .meta.cache
 out
 dist
+*.out
 *.zip
 *.tar
 *.tgz

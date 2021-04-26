@@ -14,7 +14,12 @@ function cut(card) {
     const i = this.cards.indexOf(card)
     if (i >= 0) {
         this.cards.splice(i, 1)
-        if (this.pos >= i) this.prev()
+
+        // TODO refactor this dirty hack!
+        //      this part shouldn't know anything about prev
+        if (this.prev) {
+            if (this.pos >= i) this.prev()
+        }
         return card
     }
 }

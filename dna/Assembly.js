@@ -33,7 +33,7 @@ class Assembly {
     }
 
     checkEquipment(e) {
-        for (c of this.cards) {
+        for (const c of this.cards) {
             if (c.title.includes(e)) return true
         }
         return false
@@ -42,7 +42,7 @@ class Assembly {
     matchMission(mission) {
         if (!mission) return false
         if (mission.fuel !== this.fuel) return false
-        for (e of mission.equip) {
+        for (const e of mission.equip) {
             if (!this.checkEquipment(e)) return false
         }
         return true
