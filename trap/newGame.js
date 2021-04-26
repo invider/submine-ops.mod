@@ -26,5 +26,18 @@ function newGame() {
 
     const trade = lab.hud.spawn( dna.hud.Trader, { name: 'trader' })
 
+    const missions = lab.hud.spawn( dna.hud.Row, {
+        name: 'missions',
+        rx: .5,
+        ry: .3,
+    })
+    missions.push( new dna.Card({ type: 'random' }) )
+    missions.push( new dna.Card({ type: 'random' }) )
+    missions.push( new dna.Card({ type: 'random' }) )
+
+    c1.stack.show()
+    c2.stack.show()
+    //missions.show()
+
     lab.control.game.nextTurn()
 }

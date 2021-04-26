@@ -14,6 +14,7 @@ function trade() {
     env.state.phase = _.TRADE
     env.state.timer = env.cfg.tradeTime
     lab.hud.trader.newTrade()
+    lab.hud.missions.hide()
 }
 
 function estimateBid(bid) {
@@ -42,6 +43,7 @@ function bidWinner() {
         }
     }
     if (winner && winner.bid < lab.hud.trader.minPrice()) winner = null
+    if (winner && winner.bid > winner.credit) winner = null
 
     return winner
 }
@@ -63,10 +65,16 @@ function completeTrade() {
 
     } else {
         log('no winner')
+        // TODO return the card to the previous owner if needed
     }
 
+    this.play()
+}
+
+function play() {
     env.state.phase = _.PLAY
     env.state.timer = env.cfg.playTime
+    lab.hud.missions.show()
 }
 
 function completePlay() {

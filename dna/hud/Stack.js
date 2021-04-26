@@ -1,41 +1,12 @@
-const df = {
-    pos: -1,
-    x: 0,
-    y: 0,
-    rx: .1,
-    ry: .1,
-}
+// @depends(dna/hud/Pile)
 
 let id = 0
-class Stack {
+class Stack extends dna.hud.Pile {
 
     constructor(st) {
-        this.name = 'stack' + (++id)
-        this.cards = []
-        augment(this, df, st)
-    }
-
-    adjust() {
-        this.x = rx(this.rx)
-        this.y = ry(this.ry)
-        this.h = ry(.27)
-        this.cards.forEach(card => card.adjust())
-    }
-
-    push(card) {
-        this.cards.push(card)
-        this.pos = this.cards.length - 1
-        card.adjust()
-    }
-
-    cut(card) {
-        if (!card) return
-        const i = this.cards.indexOf(card)
-        if (i >= 0) {
-            this.cards.splice(i, 1)
-            if (this.pos >= i) this.prev()
-            return card
-        }
+        super(st)
+        //this.cards = []
+        //augment(this, df, st)
     }
 
     getSelected() {
@@ -73,7 +44,7 @@ class Stack {
         return this.cards[ this.pos + 1 ]
     }
 
-    draw() {
+    drawContent() {
         // position the cards
         const left = this.getPrev()
         const center = this.getCur()
@@ -81,22 +52,22 @@ class Stack {
 
         if (right && (left !== right)) {
             right.back = true
-            right.x = this.x + right.w * .1
-            right.y = this.y - right.h * .4
+            right.x = right.w * .1
+            right.y = -right.h * .4
             right.draw()
         }
 
         if (left && (left !== center)) {
             left.back = true
-            left.x = this.x - left.w * 1.1
-            left.y = this.y - left.h * .4
+            left.x = -left.w * 1.1
+            left.y = -left.h * .4
             left.draw()
         }
 
         if (center) {
             center.back = false
-            center.x = this.x - center.w/2
-            center.y = this.y - center.h/2
+            center.x = -center.w/2
+            center.y = -center.h/2
             center.draw()
         }
     }
