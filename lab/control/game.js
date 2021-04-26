@@ -47,8 +47,6 @@ function bidWinner() {
 }
 
 function completeTrade() {
-    env.state.phase = _.PLAY
-
     const winner = this.bidWinner()
     if (winner) {
         log('winner: ' + winner.name)
@@ -66,6 +64,13 @@ function completeTrade() {
     } else {
         log('no winner')
     }
+
+    env.state.phase = _.PLAY
+    env.state.timer = env.cfg.playTime
+}
+
+function completePlay() {
+    this.nextTurn()
 }
 
 function evo(dt) {
@@ -73,6 +78,10 @@ function evo(dt) {
         case _.TRADE:
             env.state.timer -= dt
             if (env.state.timer <= 0) this.completeTrade()
+            break
+        case _.PLAY:
+            env.state.timer -= dt
+            if (env.state.timer <= 0) this.completePlay()
             break
     }
 }

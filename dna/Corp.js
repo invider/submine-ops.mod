@@ -54,12 +54,12 @@ class Corp {
     handleTrade(action) {
         switch(action) {
             case _.UP:
-            case _.LEFT:
+            case _.RIGHT:
                 this.increaseBid()
                 break
 
             case _.DOWN:
-            case _.RIGHT:
+            case _.LEFT:
                 this.decreaseBid()
                 break
         }
@@ -73,7 +73,7 @@ class Corp {
         }
     }
 
-    activate(action) {
+    act(action) {
         switch(env.state.phase) {
             case _.TRADE:
             case _.SELL:

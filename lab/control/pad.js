@@ -40,7 +40,6 @@ function evo(dt) {
         if (d.buttons[b[2]] && d.buttons[b[2]].pressed) y = 1
         if (d.buttons[b[3]] && d.buttons[b[3]].pressed) x = 1
 
-
         if (x < -sens) {
             activate(id)
             p.act(1, id)

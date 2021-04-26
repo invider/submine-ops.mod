@@ -11,8 +11,8 @@ const playerMap = []
 
 function bind(target, player) {
     player = player || 0
-    log('binding #' + player + ' -> ' + target.name)
-    target.playerId = player
+    log('binding #' + (player + 1) + ' -> ' + target.name)
+    target.playerId = player + 1
     playerMap[player] = target
     if (!ctrl[player]) {
         ctrl[player] = []
@@ -47,7 +47,7 @@ function act(action, player) {
 
     if (!playerMap[player]) {
         // nothing is binded for the player
-        // try to capture the port
+        // try to capture controls
         trap('capture', player)
     }
 
