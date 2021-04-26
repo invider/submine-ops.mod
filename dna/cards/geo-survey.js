@@ -1,4 +1,7 @@
+
 const title = 'Geo Survey'
+
+const price = 10
 
 // the card is introduced to the table
 function onOpen() {

@@ -13,10 +13,17 @@ class Info extends dna.hud.Sticky {
     draw() {
         if (!this.corp) return
 
+        const fsize = 24
         fill('#00ffff')
-        font('24px ' + env.style.fontFace)
+        font(fsize + 'px ' + env.style.fontFace)
         baseTop()
         alignCenter()
-        text('$' + this.corp.credit, this.x, this.y)
+        text(
+            'Fuel:' + this.corp.fuel
+            + '  $' + this.corp.credit,
+                this.x, this.y)
+
+        fill('#ffff00')
+        text(this.corp.name, this.x, this.y + fsize)
     }
 }

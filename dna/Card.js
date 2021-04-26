@@ -6,7 +6,7 @@ const df = {
     abackground: hsl(.57, .4,  .7),
     border:      hsl(.05, .25, .3),
     aborder:     hsl(.15, .5,  .4),
-    ewBase:   15,
+    ewBase:   17,
     ehFontH:  10,
     ehFontT:  8,
     eEdge:    10,
@@ -41,7 +41,7 @@ class Card {
     }
 
     adjust() {
-        this.w = ctx.width * (this.ewBase/100)
+        this.w = ctx.height * (this.ewBase/100)
         this.h = this.w / this.hwRatio
     }
 

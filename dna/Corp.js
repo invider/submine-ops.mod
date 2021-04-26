@@ -1,5 +1,6 @@
 const df = {
     bid: 0,
+    fuel: 100,
 }
 
 class Corp {
