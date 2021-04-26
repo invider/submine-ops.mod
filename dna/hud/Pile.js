@@ -17,7 +17,7 @@ class Pile {
     adjust() {
         this.x = rx(this.rx)
         this.y = ry(this.ry)
-        this.h = ry(.27)
+        this.h = ry(.29)
         this.cards.forEach(card => card.adjust())
     }
 

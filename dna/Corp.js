@@ -53,6 +53,12 @@ class Corp {
     }
 
     playCard() {
+        if (this.moves > 0) {
+            // TODO play denied sfx
+            log('no more!')
+            return
+        }
+
         const card = this.stack.getSelected()
         if (card) {
             if (this.assembly.join(card)) {
@@ -61,6 +67,12 @@ class Corp {
         } else {
             // missing card sfx
         }
+        this.moves ++
+        lab.control.game.endTurn()
+    }
+
+    readyToTurn() {
+        return (this.moves > 0)
     }
 
     startBidding() {

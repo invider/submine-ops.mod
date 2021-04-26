@@ -15,11 +15,11 @@ function newGame() {
     const corp = lab.touch('corp')
     const c1 = corp.spawn( dna.Corp, {
         team: 1,
-        name: 'Drilling Corp',
+        name: 'Deep Mining Inc.',
     })
     const c2 = corp.spawn( dna.Corp, {
         team: 2,
-        name: 'Mineral Corp',
+        name: 'Outer Minerals Inc.',
     })
     lab.control.player.bind(c1, 0)
     lab.control.player.bind(c2, 1)

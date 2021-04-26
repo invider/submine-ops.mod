@@ -6,7 +6,7 @@ const df = {
     abackground: hsl(.57, .4,  .7),
     border:      hsl(.05, .25, .3),
     aborder:     hsl(.15, .5,  .4),
-    ewBase:   17,
+    ewBase:   19,
     ehFontH:  10,
     ehFontT:  8,
     eEdge:    10,

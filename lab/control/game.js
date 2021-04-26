@@ -10,6 +10,18 @@ function nextTurn() {
     this.trade()
 }
 
+function endTurn() {
+    const ready = lab.corp._ls.reduce((i, e) => {
+        if (e.readyToTurn()) return i + 1
+        else return i
+    }, 0)
+
+    log('total ready: ' + ready)
+    if (ready === lab.corp._ls.length) {
+        this.completePlay()
+    }
+}
+
 function trade() {
     env.state.phase = _.TRADE
     env.state.timer = env.cfg.tradeTime
@@ -71,6 +83,9 @@ function completeTrade() {
 }
 
 function play() {
+    for (const corp of lab.corp._ls) {
+        corp.moves = 0
+    }
     env.state.phase = _.PLAY
     env.state.timer = env.cfg.playTime
     lab.hud.missions.show()
