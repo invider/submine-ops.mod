@@ -13,8 +13,9 @@ function nextTurn() {
 function trade() {
     env.state.phase = _.TRADE
     env.state.timer = env.cfg.tradeTime
-    lab.hud.trader.newTrade()
     lab.hud.missions.hide()
+    lab.hud.trader.newTrade()
+    lab.hud.trader.show()
 }
 
 function estimateBid(bid) {

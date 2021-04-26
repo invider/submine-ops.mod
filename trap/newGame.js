@@ -31,9 +31,9 @@ function newGame() {
         rx: .5,
         ry: .3,
     })
-    missions.push( new dna.Card({ type: 'random' }) )
-    missions.push( new dna.Card({ type: 'random' }) )
-    missions.push( new dna.Card({ type: 'random' }) )
+    for (let i = 0; i < 3; i++) {
+        missions.push( new dna.Card({ type: 'mission' }) )
+    }
 
     c1.stack.show()
     c2.stack.show()

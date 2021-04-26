@@ -9,6 +9,7 @@ class Trader {
 
     constructor(st) {
         augment(this, df, st)
+        mixin(this, dna.hud.TransitTrait)
     }
 
     adjust() {
@@ -25,12 +26,26 @@ class Trader {
         return this.card.price
     }
 
+    evo(dt) {
+        this.evoTransition(dt)
+    }
+
+    drawContent() {
+        this.card.x = -this.card.w/2
+        this.card.y = -this.card.h/2
+        this.card.draw()
+    }
+
     draw() {
         if (env.state.phase !== _.TRADE && env.state.phase !== _.SELL) return
         if (!this.card) return
 
-        this.card.x = this.x - this.card.w/2
-        this.card.y = this.y - this.card.h/2
-        this.card.draw()
+        save()
+        translate(this.x, this.y)
+
+        alpha(this.alpha)
+        this.drawContent()
+
+        restore()
     }
 }

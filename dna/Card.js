@@ -25,19 +25,32 @@ class Card {
         this.id = ++id
         augment(this, df, st)
 
+        let set = dna.cards
         if (this.type === 'random') {
             this.type = lib.math.rnde(dna.cards._ls).name
+        } else if (this.type === 'mission') {
+            this.mission = true
+            mixin(this, dna.MissionTrait)
+            this.type = lib.math.rnde(dna.missions._ls).name
+            set = dna.missions
         }
 
         // mix in card type trait
-        const typeTrait = dna.cards[this.type]
-        if (!typeTrait) log.warn(`missing trait for card [${this.type}]`)
+        const typeTrait = set[this.type]
+        if (!typeTrait) {
+            log.warn(`missing trait for card [${this.type}]`)
+        }
         augment(this, typeTrait)
 
         // set card type text info
         const typeText = dna.info[this.type]
-        if (!typeText) log.warn(`missing text for card [${this.type}]`)
-        else this.text = typeText
+        if (!typeText) {
+            log.warn(`missing text for card [${this.type}]`)
+        } else {
+            this.text = typeText
+        }
+
+        if (this.onCreated) this.onCreated()
     }
 
     adjust() {
@@ -53,6 +66,36 @@ class Card {
         alignCenter()
         fill('#ffff00')
         text(this.title, 0, 0)
+    }
+
+    drawBody() {
+        const edge = this.w * (this.eEdge/100)
+
+        if (!this.words) {
+            this.words = this.text.split(' ')
+        }
+        const tFontSize = this.h * (this.ehFontT/100)
+        font(tFontSize + 'px ' + env.style.fontFace)
+        alignLeft()
+
+        const space = tFontSize * .5
+        const limit = this.w - edge
+        let x = edge
+        let y = this.h * (this.textBase/100)
+        let lineWords = 0
+
+        for (const w of this.words) {
+            const tw = textWidth(w)
+            if (lineWords > 0 && x + tw > limit) {
+                // line feed
+                x = edge
+                y += tFontSize
+                lineWords = 0
+            }
+            text(w, x, y)
+            x += tw + space
+            lineWords ++
+        }
     }
 
     draw() {
@@ -87,31 +130,7 @@ class Card {
         alignCenter()
         text(this.title, this.w/2, hFontSize)
 
-        if (!this.words) {
-            this.words = this.text.split(' ')
-        }
-        const tFontSize = this.h * (this.ehFontT/100)
-        font(tFontSize + 'px ' + env.style.fontFace)
-        alignLeft()
-
-        const space = tFontSize * .5
-        const limit = this.w - edge
-        let x = edge
-        let y = this.h * (this.textBase/100)
-        let lineWords = 0
-
-        for (const w of this.words) {
-            const tw = textWidth(w)
-            if (lineWords > 0 && x + tw > limit) {
-                // line feed
-                x = edge
-                y += tFontSize
-                lineWords = 0
-            }
-            text(w, x, y)
-            x += tw + space
-            lineWords ++
-        }
+        this.drawBody()
 
         restore()
     }
