@@ -21,9 +21,10 @@ function newGame() {
         team: 2,
         name: 'Mineral Corp',
     })
-
     lab.control.player.bind(c1, 0)
     lab.control.player.bind(c2, 1)
+
+    const trade = lab.hud.spawn( dna.hud.Trader, { name: 'trader' })
 
     lab.control.game.nextTurn()
 }

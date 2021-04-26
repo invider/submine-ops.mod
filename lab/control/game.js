@@ -13,10 +13,12 @@ function nextTurn() {
 function trade() {
     env.state.phase = _.TRADE
     env.state.timer = env.cfg.tradeTime
+    lab.hud.trader.newTrade()
 }
 
 function estimateBid(bid) {
     if (bid === 0) return -1
+    if (bid < lab.hud.trader.minPrice()) return -1
 
     let players = 0
     for (const e of lab.corp._ls) {
@@ -39,6 +41,8 @@ function bidWinner() {
             winner = null
         }
     }
+    if (winner && winner.bid < lab.hud.trader.minPrice()) winner = null
+
     return winner
 }
 

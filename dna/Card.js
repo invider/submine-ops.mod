@@ -71,14 +71,21 @@ class Card {
         rect(0, 0, this.w, this.h)
 
         const edge = this.w * (this.eEdge/100)
+        const qedge = edge/4
 
         const hFontSize = this.h * (this.ehFontH/100)
         font(hFontSize + 'px ' + env.style.fontFace)
-        baseTop()
-        alignCenter()
+
         fill('#000000')
-        text('#' + this.id + ' $' + this.price, this.w/2, edge)
-        text(this.title, this.w/2, edge + hFontSize)
+        baseTop()
+        alignLeft()
+        text('#' + this.id, qedge, 0)
+
+        alignRight()
+        text('$' + this.price, this.w - qedge, 0)
+
+        alignCenter()
+        text(this.title, this.w/2, hFontSize)
 
         if (!this.words) {
             this.words = this.text.split(' ')
