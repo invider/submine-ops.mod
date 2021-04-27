@@ -46,6 +46,9 @@ class Corp {
         log('+' + mission.reward)
         this.credit += mission.reward
         this.nextAssembly()
+        defer(() => {
+            sfx(res.sfx.launch, 1)
+        }, rnd() * .5)
     }
 
     pushCard(card) {
@@ -59,7 +62,7 @@ class Corp {
     playCard() {
         if (this.moves > 0) {
             // TODO play denied sfx
-            log('no more!')
+            sfx(res.sfx.denied, .5)
             return
         }
 

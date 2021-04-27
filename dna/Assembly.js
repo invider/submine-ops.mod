@@ -12,22 +12,22 @@ class Assembly {
         if (this.cards.length === 0) {
             // core is expected
             if (!card.capacity) {
-                // TODO denied sfx
+                sfx(res.sfx.denied, .5)
                 return false
             }
             this.core = card
         } else {
             if (card.capacity) {
-                // TODO denied sfx
+                sfx(res.sfx.denied, .5)
             }
         }
 
         if (this.freeSpace() < 1) {
-            // TODO denied sfx
+            sfx(res.sfx.denied, .5)
             return false
         }
         this.push(card)
-        // TODO sfx
+        sfx(res.sfx.click, .5)
 
         return true
     }

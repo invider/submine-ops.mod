@@ -12,7 +12,6 @@ function handleOpt(e) {
 */
 
 function handleControl(e) {
-    log(e.code)
     switch(e.code) {
 
         case 'Escape':
@@ -23,7 +22,6 @@ function handleControl(e) {
             trap('skip')
             e.preventDefault()
             break
-
         case 'Backquote':
             lab.control.game.newMissions()
             break
