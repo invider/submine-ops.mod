@@ -63,12 +63,12 @@ class Corp {
         if (card) {
             if (this.assembly.join(card)) {
                 this.stack.cut(card)
+                this.moves ++
+                lab.control.game.endTurn()
             }
         } else {
             // missing card sfx
         }
-        this.moves ++
-        lab.control.game.endTurn()
     }
 
     readyToTurn() {
@@ -93,13 +93,15 @@ class Corp {
 
     refuel() {
         if (this.fuel < 1) return
-        if (this.assembly.refuel(1) > 0) {
-            this.fuel --
-        }
+
+        const qty = 1
+        const left = this.assembly.refuel(qty)
+        this.fuel -= (qty - left)
     }
 
     defuel() {
-        this.fuel += this.assembly.defuel(1)
+        const qty = 1
+        this.fuel += this.assembly.defuel(qty)
     }
 
     handleTrade(action) {

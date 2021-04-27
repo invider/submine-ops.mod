@@ -18,4 +18,7 @@ function drawBody() {
         y += tFontSize
         text('* ' + e, x, y)
     }
+
+    y += 2*tFontSize
+    text('reward: $' + this.reward, x, y)
 }

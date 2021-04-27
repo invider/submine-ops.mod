@@ -25,6 +25,7 @@ class Play extends dna.hud.Sticky {
             const assembly = this.corp.assembly
             if (!assembly) return
             const ls = assembly.cards
+            if (ls.length === 0) return
 
             save()
             translate(this.x, this.y)

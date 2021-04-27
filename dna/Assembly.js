@@ -9,27 +9,55 @@ class Assembly {
     join(card) {
         if (!card) return
 
+        if (this.cards.length === 0) {
+            // core is expected
+            if (!card.capacity) {
+                // TODO denied sfx
+                return false
+            }
+            this.core = card
+        }
+
+        if (this.freeSpace() < 1) {
+            // TODO denied sfx
+            return false
+        }
         this.push(card)
         // TODO sfx
 
         return true
     }
 
-    defuel(q) {
-        if (q > this.fuel) {
-            const left = q - this.fuel
-            this.fuel = 0
+    freeSpace() {
+        if (!this.core) return 0
+        else return this.core.capacity - (this.cards.length - 1)
+    }
+
+    // returns leftovers
+    refuel(q) {
+        if (!this.core) return
+        if (this.fuel + q > this.core.tank) {
+            // fuel max out
+            const left = (this.fuel + q) - this.core.tank
+            this.fuel = this.core.tank
             return left
         } else {
-            this.fuel -= q
+            this.fuel += q
             return 0
         }
     }
 
-    refuel(q) {
-        this.fuel += q
-        return q
-        // TODO check core fuel capacity
+    // returns actual qty of defueled
+    defuel(q) {
+        if (!this.core) return
+        if (q > this.fuel) {
+            const actual = this.fuel
+            this.fuel = 0
+            return actual
+        } else {
+            this.fuel -= q
+            return q
+        }
     }
 
     checkEquipment(e) {

@@ -6,5 +6,6 @@ const equip = [
 
 function onCreated() {
     this.title = 'X-' + (101 + RND(707) + ' mining')
-    log('a new mission on the block!')
+    this.fuel = 10 + RND(40)
+    this.reward = 45 + RND(10) * 5
 }
