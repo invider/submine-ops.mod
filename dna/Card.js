@@ -1,6 +1,6 @@
 const df = {
-    title: 'A Card',
-    text: 'Some valuable thingy',
+    title: '',
+    text: '',
     price: 1,
     background:  hsl(.57, .4,  .5),
     abackground: hsl(.57, .4,  .7),
@@ -10,7 +10,7 @@ const df = {
     ehFontH:  10,
     ehFontT:  8,
     eEdge:    10,
-    textBase: 60,
+    textBase: 50,
     hwRatio: .7,
     x: 0,
     y: 0,
