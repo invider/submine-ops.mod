@@ -16,6 +16,10 @@ class Assembly {
                 return false
             }
             this.core = card
+        } else {
+            if (card.capacity) {
+                // TODO denied sfx
+            }
         }
 
         if (this.freeSpace() < 1) {

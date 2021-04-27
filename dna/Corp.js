@@ -49,7 +49,11 @@ class Corp {
     }
 
     pushCard(card) {
-        this.stack.push( card )
+        if (card.ghost) {
+            card.onJoinedCorp(this)
+        } else {
+            this.stack.push( card )
+        }
     }
 
     playCard() {

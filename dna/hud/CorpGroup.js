@@ -35,7 +35,9 @@ class CorpGroup extends dna.hud.Container {
         anchor.name = 'stack'
         const s = this.spawn( dna.hud.Stack, anchor )
         for (let i = 0; i < 5; i++) {
-            s.push( new dna.Card({ type: 'random' }))
+            const card = new dna.Card({ type: 'random' })
+            if (!card.ghost) s.push( card )
+            else i--
         }
 
         this.spawn( dna.hud.Info, {
