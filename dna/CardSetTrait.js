@@ -23,3 +23,7 @@ function cut(card) {
         return card
     }
 }
+
+function clear() {
+    this.cards = []
+}

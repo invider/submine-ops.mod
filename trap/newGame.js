@@ -36,6 +36,10 @@ function newGame() {
                 this.push( new dna.Card({ type: 'mission' }) )
             }
         },
+        newMissions: function() {
+            this.clear()
+            this.refreshMissions()
+        },
     })
     missions.refreshMissions()
 

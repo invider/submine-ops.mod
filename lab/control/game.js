@@ -98,6 +98,10 @@ function doMissions() {
     lab.hud.missions.refreshMissions()
 }
 
+function newMissions() {
+    lab.hud.missions.newMissions()
+}
+
 function completePlay() {
     this.doMissions()
     this.nextTurn()

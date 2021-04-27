@@ -1,2 +1,2 @@
 const title = 'heavy lifter'
-const price = 5
+const price = 10
