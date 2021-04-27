@@ -90,12 +90,14 @@ class Corp {
         step = step || 1
         this.bid += step
         if (this.bid > this.credit) this.bid = this.credit
+        sfx(res.sfx.preselect, .5)
     }
 
     decreaseBid(step) {
         step = step || 1
         this.bid -= step
         if (this.bid < 0) this.bid = 0
+        sfx(res.sfx.preselect, .5)
     }
 
     refuel() {
@@ -103,12 +105,19 @@ class Corp {
 
         const qty = 1
         const left = this.assembly.refuel(qty)
-        this.fuel -= (qty - left)
+
+        const actual = (qty - left)
+        this.fuel -= actual
+        if (actual > 0) sfx(res.sfx.preselect, .5)
     }
 
     defuel() {
         const qty = 1
-        this.fuel += this.assembly.defuel(qty)
+        const actual = this.assembly.defuel(qty)
+        if (actual > 0) {
+            this.fuel += actual
+            sfx(res.sfx.preselect, .5)
+        }
     }
 
     handleTrade(action) {
@@ -127,8 +136,14 @@ class Corp {
 
     handlePlay(action) {
         switch(action) {
-            case _.LEFT:  this.stack.prev(); break;
-            case _.RIGHT: this.stack.next(); break;
+            case _.LEFT:
+                this.stack.prev();
+                sfx(res.sfx.preselect, .5)
+                break;
+            case _.RIGHT:
+                sfx(res.sfx.preselect, .5)
+                this.stack.next()
+                break
             case _.UP:    this.refuel();     break;
             case _.DOWN:  this.defuel();     break;
             case _.USE:   this.playCard();   break;

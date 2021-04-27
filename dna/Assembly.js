@@ -39,7 +39,7 @@ class Assembly {
 
     // returns leftovers
     refuel(q) {
-        if (!this.core) return
+        if (!this.core) return q
         if (this.fuel + q > this.core.tank) {
             // fuel max out
             const left = (this.fuel + q) - this.core.tank

@@ -8,6 +8,7 @@ function nextTurn() {
     env.state.turn ++
     log('TURN: ' + env.state.turn)
     this.trade()
+    sfx(res.sfx.pressurePlate, .9)
 }
 
 function endTurn() {
@@ -89,6 +90,7 @@ function play() {
     env.state.phase = _.PLAY
     env.state.timer = env.cfg.playTime
     lab.hud.missions.show()
+    sfx(res.sfx.message,.9)
 }
 
 function doMissions() {
