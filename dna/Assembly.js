@@ -65,8 +65,10 @@ class Assembly {
     }
 
     checkEquipment(e) {
+        if (!e) return true
+        e = e.toLowerCase()
         for (const c of this.cards) {
-            if (c.title.includes(e)) return true
+            if (c.title.toLowerCase().includes(e)) return true
         }
         return false
     }

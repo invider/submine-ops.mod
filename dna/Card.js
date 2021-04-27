@@ -45,7 +45,7 @@ class Card {
         // set card type text info
         const typeText = dna.info[this.type]
         if (!typeText) {
-            log.warn(`missing text for card [${this.type}]`)
+            if (!this.mission && !this.ghost) log.warn(`missing text for card [${this.type}]`)
         } else {
             this.text = typeText
         }
